@@ -72,13 +72,34 @@ function startFreeFlyMode() {
     let ny = y + vy;
 
     // 碰到屏幕边缘反弹
-    if (nx <= 0 || nx + w >= screenWidth) {
+    if (nx <= 0) {
       vx = -vx;
-      nx = Math.max(0, Math.min(screenWidth - w, nx));
+      nx = 0;
+      // 如果垂直速度太小，给一个随机的小速度避免只在水平移动
+      if (Math.abs(vy) < 1) {
+        vy = (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random());
+      }
+    } else if (nx + w >= screenWidth) {
+      vx = -vx;
+      nx = screenWidth - w;
+      if (Math.abs(vy) < 1) {
+        vy = (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random());
+      }
     }
-    if (ny <= 0 || ny + h >= screenHeight) {
+    
+    if (ny <= 0) {
       vy = -vy;
-      ny = Math.max(0, Math.min(screenHeight - h, ny));
+      ny = 0;
+      // 如果水平速度太小，给一个随机的小速度避免只在垂直移动
+      if (Math.abs(vx) < 1) {
+        vx = (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random());
+      }
+    } else if (ny + h >= screenHeight) {
+      vy = -vy;
+      ny = screenHeight - h;
+      if (Math.abs(vx) < 1) {
+        vx = (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random());
+      }
     }
 
     mainWindow.setPosition(Math.round(nx), Math.round(ny));
