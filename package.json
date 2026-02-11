@@ -1,0 +1,17 @@
+{
+  "name": "aemeath-desktop-pet",
+  "version": "1.0.0",
+  "description": "Aemeath 电子桌宠 - Mac 桌面宠物",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pet": "electron .",
+    "install:mirror": "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ npm install"
+  },
+  "keywords": ["desktop-pet", "electron", "mac"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0"
+  }
+}
